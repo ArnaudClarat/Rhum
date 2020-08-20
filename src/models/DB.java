@@ -32,14 +32,4 @@ public class DB {
 			return null;
 		}
 	}
-	
-	static boolean close() {
-		try {
-			conn.close();
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
 }

@@ -17,8 +17,8 @@ public class Rhum {
 				this.nom = resultSet.getNString("nom_rhum");
 				this.details = resultSet.getNString("details_rhum");
 				this.prix = resultSet.getInt("prix_rhum");
-				// this.marque = new Marque(resultSet.getInt("marque_rhum")); TODO créer constructeur Marque
-				// this.origine = new Origine(resultSet.getInt("marque_origine")); TODO Créer contructeur Origine
+				this.marque = new Marque(resultSet.getInt("marque_rhum"));
+				this.origine = new Origine(resultSet.getInt("origine_rhum"));
 			}
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();
@@ -54,13 +54,9 @@ public class Rhum {
 			Connection conn = DB.getConn();
 			assert conn != null;
 			Statement stmt = conn.createStatement();
-			ResultSet resultSet = stmt.executeQuery("SELECT * FROM t_rhums " +
-					"LEFT JOIN t_marques ON marque_rhum = id_marque " +
-					"LEFT JOIN t_origines ON origine_rhum = id_origine " +
-					"WHERE id_rhum = " + id
-			);
-			System.out.println(resultSet);
+			ResultSet resultSet = stmt.executeQuery("SELECT * FROM t_rhums WHERE id_rhum = " + id);
 			Rhum rhum = new Rhum(resultSet);
+			conn.close();
 			return rhum;
 		} catch (SQLException throwable) {
 			throwable.printStackTrace();

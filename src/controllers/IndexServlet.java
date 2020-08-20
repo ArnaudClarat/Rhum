@@ -21,7 +21,6 @@ public class IndexServlet extends HttpServlet {
 	
 	public void handleRequest(HttpServletRequest req, HttpServletResponse res) {
 		try {
-			req.setAttribute("rhum", Rhum.getRhum(1));
 			req.getRequestDispatcher("views/templates/menu.jsp").forward(req, res);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
