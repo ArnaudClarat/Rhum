@@ -1,6 +1,8 @@
 package models;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Rhum {
 	int id; // ID du rhum
@@ -11,17 +13,23 @@ public class Rhum {
 	Origine origine; // Origine du rhum
 	
 	public Rhum(ResultSet resultSet) {
+		// Crée le rhum en fonction du ResultSet
 		try {
-			if(resultSet.next()) {
+			if (resultSet.next()) {
+				/*System.out.println(resultSet.toString());
 				this.id = resultSet.getInt("id_rhum");
 				this.nom = resultSet.getNString("nom_rhum");
 				this.details = resultSet.getNString("details_rhum");
 				this.prix = resultSet.getInt("prix_rhum");
 				this.marque = new Marque(resultSet.getInt("marque_rhum"));
 				this.origine = new Origine(resultSet.getInt("origine_rhum"));
+				 */
+				System.out.println("id: "+resultSet.getInt("id_rhum"));
+				System.out.println("nom: "+resultSet.getString("nom_rhum"));
+				System.out.println("origine: "+resultSet.getInt("origine_rhum"));
 			}
-		} catch (SQLException throwables) {
-			throwables.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -46,18 +54,31 @@ public class Rhum {
 	}
 	
 	public Origine getOrigine() {
+		System.out.println(origine);
 		return origine;
 	}
 	
-	public static Rhum getRhum(int id) {
+	public static String getRhums() {
+		// Regroupe la partie SQL
 		try {
-			Connection conn = DB.getConn();
+			Connection conn = DB.getDB();
 			assert conn != null;
+			
+			Statement statement = conn.createStatement();
+			ResultSet rS = statement.executeQuery("SELECT id_rhum FROM t_rhums");
+			List<Integer> index = new ArrayList<>();
+			while (rS.next()) {
+				index.add(rS.getInt(1));
+			}
+			System.out.println(index);
+			/*
 			Statement stmt = conn.createStatement();
 			ResultSet resultSet = stmt.executeQuery("SELECT * FROM t_rhums WHERE id_rhum = " + id);
 			Rhum rhum = new Rhum(resultSet);
-			conn.close();
+			stmt.close();
 			return rhum;
+			 */
+			return null;
 		} catch (SQLException throwable) {
 			throwable.printStackTrace();
 			return null;

@@ -11,7 +11,7 @@ public class Marque {
 	
 	public Marque (int id) {
 		try {
-			Connection conn = DB.getConn();
+			Connection conn = DB.getDB();
 			assert conn != null;
 			Statement stmt = conn.createStatement();
 			ResultSet resultSet = stmt.executeQuery("SELECT * FROM t_marques WHERE id_marque = " + id);

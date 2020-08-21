@@ -7,19 +7,25 @@
 --%>
 <%@ page import="models.Rhum" %>
 <%@ page pageEncoding="UTF-8" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
   <head>
     <title>$Title$</title>
   </head>
   <body>
-  <c:forEach var="id" begin="1" end="8" step="1">
-    Nom : ${Rhum.getRhum(id).nom }<br>
-    Prix : ${Rhum.getRhum(id).prix} €<br>
-    Détails : ${Rhum.getRhum(id).details}<br>
-    Marque : ${Rhum.getRhum(id).marque}<br>
-    Origine : ${Rhum.getRhum(id).origine}<br>
-  </c:forEach>
+    <table>
+      ${rhums}
+      <%--
+      <c:forEach var="id" begin="1" end="8" step="1">
+        <tr>
+          <td>${Rhum.getRhum(id).marque} ${Rhum.getRhum(id).nom }</td>
+          <td>Détails : ${Rhum.getRhum(id).details}</td>
+          <td>Prix : ${Rhum.getRhum(id).prix} €</td>
+          <td>Origine : ${Rhum.getRhum(id).origine}</td>
+        </tr>
+      </c:forEach>
+      --%>
+    </table>
   </body>
 </html>

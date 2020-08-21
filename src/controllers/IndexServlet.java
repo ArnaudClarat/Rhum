@@ -16,11 +16,13 @@ public class IndexServlet extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+		
 		handleRequest(request, response);
 	}
 	
 	public void handleRequest(HttpServletRequest req, HttpServletResponse res) {
 		try {
+			req.setAttribute("rhums", Rhum.getRhums());
 			req.getRequestDispatcher("views/templates/menu.jsp").forward(req, res);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();

@@ -11,7 +11,7 @@ public class DB {
 		return conn;
 	}
 	
-	static Connection getConn() {
+	private static Connection getConn() {
 		try {
 			System.out.println("Loading driver");
 			Class.forName("com.mysql.cj.jdbc.Driver"); // Chargement du driver

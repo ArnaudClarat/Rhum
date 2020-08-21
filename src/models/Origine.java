@@ -11,7 +11,7 @@ public class Origine {
 	
 	public Origine (int id) {
 		try {
-			Connection conn = DB.getConn();
+			Connection conn = DB.getDB();
 			assert conn != null;
 			Statement stmt = conn.createStatement();
 			ResultSet resultSet = stmt.executeQuery("SELECT * FROM t_origines WHERE id_origine = " + id);
