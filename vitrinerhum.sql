@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `t_marques` (
 --
 
 INSERT INTO `t_marques` (`nom_marque`) VALUES
-('Bacardí'),
+('Bacardi'),
 ('Captain Morgan'),
 ('Havana Club'),
 ('Kraken'),

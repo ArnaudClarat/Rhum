@@ -1,5 +1,7 @@
 package models;
 
+import DAO.*;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,25 +14,13 @@ public class Rhum {
 	Marque marque; // Marque du rhum
 	Origine origine; // Origine du rhum
 	
-	public Rhum(ResultSet resultSet) {
-		// Crée le rhum en fonction du ResultSet
-		try {
-			if (resultSet.next()) {
-				/*System.out.println(resultSet.toString());
-				this.id = resultSet.getInt("id_rhum");
-				this.nom = resultSet.getNString("nom_rhum");
-				this.details = resultSet.getNString("details_rhum");
-				this.prix = resultSet.getInt("prix_rhum");
-				this.marque = new Marque(resultSet.getInt("marque_rhum"));
-				this.origine = new Origine(resultSet.getInt("origine_rhum"));
-				 */
-				System.out.println("id: "+resultSet.getInt("id_rhum"));
-				System.out.println("nom: "+resultSet.getString("nom_rhum"));
-				System.out.println("origine: "+resultSet.getInt("origine_rhum"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public Rhum(int id, String nom, String details, int prix, int idMarque, int idOrigine) {
+		this.id = id;
+		this.nom = nom;
+		this.details = details;
+		this.prix = prix;
+		this.marque = MarqueDAO.getOne(idMarque);
+		this.origine = OrigineDAO.getOne(idOrigine);
 	}
 	
 	public int getId() {
